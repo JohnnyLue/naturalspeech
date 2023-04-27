@@ -473,6 +473,21 @@ class TextAudioCollateWithDuration:
         batch: [text_normalized, spec_normalized, wav_normalized]
         """
         # Right zero-pad all one-hot text sequences to max input length
+
+        #debug:##########################################################################################
+
+        #print('len of batch: ',len(batch))#type:list, size:16
+        print('len of batch[5]: ',len(batch[15]))#type:tuple, size:4
+        #print('type of batch[0][0]: ',type(batch[0][0]))#torch.Tensor
+        #print('type of batch[0][1]: ',type(batch[0][1]))#torch.Tensor
+        #print('type of batch[0][2]: ',type(batch[0][2]))#torch.Tensor
+        #i=0
+        #for x in batch:
+        #    print('batch[',i,'][1] size: ', x[1].size())#torch.Size([513]):一維-->.size(1) out of range
+        #    i+=1
+        #以batch[i][1]為例，只有batch[約12~15][1]會有二維,且不固定
+        #################################################################################################
+
         _, ids_sorted_decreasing = torch.sort(
             torch.LongTensor([x[1].size(1) for x in batch]), dim=0, descending=True
         )
